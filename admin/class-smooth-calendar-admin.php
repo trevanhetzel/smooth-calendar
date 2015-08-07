@@ -117,7 +117,7 @@ class Smooth_Calendar_Admin {
 		$opts['capability_type']						= $cap_type;
 		$opts['description']							= '';
 		$opts['exclude_from_search']					= false;
-		$opts['has_archive']							= true;
+		$opts['has_archive']							= false;
 		$opts['hierarchical']							= false;
 		$opts['map_meta_cap']							= true;
 		$opts['menu_icon']								= 'dashicons-admin-post';
@@ -221,12 +221,21 @@ class Smooth_Calendar_Admin {
 		$location_data = sanitize_text_field( $_POST['calendar_location'] );
 		$description_data = sanitize_text_field( $_POST['calendar_description'] );
 
+		// Add month & year
+		$date = esc_attr( $date_data );
+		$month = date('m', strtotime($date));
+		$year = date('Y', strtotime($date));
+
 		// Update the meta field in the database.
 		update_post_meta( $post_id, 'meta_calendar_date', $date_data );
 		update_post_meta( $post_id, 'meta_calendar_start', $start_data );
 		update_post_meta( $post_id, 'meta_calendar_end', $end_data );
 		update_post_meta( $post_id, 'meta_calendar_location', $location_data );
 		update_post_meta( $post_id, 'meta_calendar_description', $description_data );
+		update_post_meta( $post_id, 'meta_calendar_month', $month );
+		update_post_meta( $post_id, 'meta_calendar_year', $year );
+
+
 	} // calendar_save_meta_box_data()
 
 }

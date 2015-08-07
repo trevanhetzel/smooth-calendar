@@ -175,6 +175,29 @@ class Smooth_Calendar {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+		$this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
+
+		// Expose extra meta values to API
+		add_filter( 'json_prepare_post', function ( $data, $post, $context ) {
+			$data['calendar'] = array(
+				'date' => get_post_meta( $post['ID'], 'meta_calendar_date', true ),
+				'start' => get_post_meta( $post['ID'], 'meta_calendar_start', true ),
+				'end' => get_post_meta( $post['ID'], 'meta_calendar_end', true ),
+				'location' => get_post_meta( $post['ID'], 'meta_calendar_location', true ),
+				'description' => get_post_meta( $post['ID'], 'meta_calendar_description', true ),
+				'month' => get_post_meta( $post['ID'], 'meta_calendar_month', true ),
+				'year' => get_post_meta( $post['ID'], 'meta_calendar_year', true )
+			);
+			return $data;
+		}, 10, 3 );
+
+
+		// Allow extra meta fields to be queried through API
+		add_filter( 'json_query_vars', function ( $vars ) {
+			$vars[] = 'meta_value';
+			return $vars;
+		});
+
 	}
 
 	/**

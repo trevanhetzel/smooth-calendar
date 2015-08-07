@@ -1,32 +1,29 @@
-(function( $ ) {
-	'use strict';
+jQuery(document).ready(function ($) {
+	if ($('#js-smooth-cal').length) {
+		// Current date
+		var dateObj = new Date();
 
-	/**
-	 * All of the code for your public-facing JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note that this assume you're going to use jQuery, so it prepares
-	 * the $ function reference to be used within the scope of this
-	 * function.
-	 *
-	 * From here, you're able to define handlers for when the DOM is
-	 * ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * Or when the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and so on.
-	 *
-	 * Remember that ideally, we should not attach any more than a single DOM-ready or window-load handler
-	 * for any particular page. Though other scripts in WordPress core, other plugins, and other themes may
-	 * be doing this, we should try to minimize doing that in our own work.
-	 */
+		// Append 0 to month
+		var formatMonth = function (date) {
+			if (date.getMonth() < 10) {
+				var zeroPrepended = '0' + date.getMonth(),
+					addOne = Number(zeroPrepended) + 1;
 
-})( jQuery );
+				return '0' + addOne;
+			} else {
+				return date.getMonth() + 1;
+			}
+		}
+
+		var thisMonth = formatMonth(dateObj),
+			thisYear = dateObj.getFullYear();
+
+		$.ajax({
+			url: '/wp-json/posts?type=calendar&filter[meta_value][month]=' + thisMonth,
+			success: function (result) {
+				console.log(result);
+			}
+		})
+	}
+
+});

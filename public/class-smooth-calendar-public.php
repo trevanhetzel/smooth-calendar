@@ -100,4 +100,19 @@ class Smooth_Calendar_Public {
 
 	}
 
+	/**
+	 * Creates new shortcodes
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 * @uses 	add_shortcode()
+	 */
+	public function register_shortcodes() {
+		add_shortcode( 'smooth-calendar', array( $this, 'calendar_shortcode') );
+	} // register_shortcodes()
+
+	public function calendar_shortcode() {
+		echo '<section class="smooth-cal" id="js-smooth-cal">test</section>';
+	}
+
 }
