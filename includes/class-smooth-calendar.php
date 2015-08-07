@@ -157,6 +157,8 @@ class Smooth_Calendar {
 
 		$this->loader->add_action( 'init', $plugin_admin, 'new_cpt_calendar' );
 
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'calendar_add_metabox' );
+		$this->loader->add_action( 'save_post', $plugin_admin, 'calendar_save_meta_box_data', 10, 2 );
 	}
 
 	/**

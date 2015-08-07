@@ -169,4 +169,64 @@ class Smooth_Calendar_Admin {
 		register_post_type( strtolower( $cpt_name ), $opts );
 	} // new_cpt_calendar()
 
+	/**
+	 * [calendar_add_metabox description]
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 */
+	public function calendar_add_metabox() {
+		add_meta_box(
+			'calendar_section',
+			__( 'Event details', 'calendar_textdomain' ),
+			array( $this, 'calendar_meta_box_callback' ),
+			'calendar',
+			'normal',
+			'default'
+		);
+	} // calendar_add_metabox()
+
+	/**
+	 * [calendar_meta_box_callback description]
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 * @return [type] [description]
+	 */
+	public function calendar_meta_box_callback( $post ) {
+		include( plugin_dir_path( __FILE__ ) . 'partials/smooth-calendar-admin-display-metabox.php' );
+	} // calendar_meta_box_callback()
+
+	/**
+	 * Saves metabox data
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 * @param 	int 		$post_id 		The post ID
+	 * @param 	object 		$object 		The post object
+	 * @return 	void
+	 */
+	public function calendar_save_meta_box_data( $post_id ) {
+
+		if ( ! isset( $_POST['calendar_meta_box_nonce'] ) ) { return; }
+		if ( ! wp_verify_nonce( $_POST['calendar_meta_box_nonce'], $this->plugin_name ) ) { return; }
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return; }
+		if ( ! current_user_can( 'edit_post', $post_id ) ) { return $post_id; }
+		if ( ! current_user_can( 'edit_page', $post_id ) ) { return $post_id; }
+
+		// Sanitize user input.
+		$date_data = sanitize_text_field( $_POST['calendar_date'] );
+		$start_data = sanitize_text_field( $_POST['calendar_start'] );
+		$end_data = sanitize_text_field( $_POST['calendar_end'] );
+		$location_data = sanitize_text_field( $_POST['calendar_location'] );
+		$description_data = sanitize_text_field( $_POST['calendar_description'] );
+
+		// Update the meta field in the database.
+		update_post_meta( $post_id, 'meta_calendar_date', $date_data );
+		update_post_meta( $post_id, 'meta_calendar_start', $start_data );
+		update_post_meta( $post_id, 'meta_calendar_end', $end_data );
+		update_post_meta( $post_id, 'meta_calendar_location', $location_data );
+		update_post_meta( $post_id, 'meta_calendar_description', $description_data );
+	} // calendar_save_meta_box_data()
+
 }
