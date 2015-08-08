@@ -2,3 +2,100 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+/* Calendar element */
+.smooth-calendar {
+	width: 100%;
+}
+
+/* Month header */
+.smooth-cal__header {
+	position: relative;
+	padding: 1em;
+ 	background: #ccc;
+ 	text-align: center;
+ 	border: 0 solid black;
+    border-width: 1px 1px 0 1px;
+}
+
+/* Month title */
+.smooth-cal__month {
+	margin: 0 !important;
+	text-transform: uppercase;
+ 	color: #000;
+ 	font-weight: bold;
+ 	font-size: 1.5em;
+}
+
+/* Prev/next arrows */
+.smooth-cal__prev,
+.smooth-cal__next {
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	transform: translateY(-50%);
+	color: black;
+	text-decoration: none;
+	border: 0 !important;
+}
+
+.smooth-cal__prev {
+	left: 1em;
+}
+
+.smooth-cal__next {
+	right: 1em;
+}
+
+/* Sun - Sat label */
+.smooth-cal__labels {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border: 0 solid black;
+}
+
+.smooth-cal__labels li {
+	float: left;
+	width: 14.287%;
+	text-align: center;
+	border: 0 solid black;
+    border-width: 1px 1px 1px 0;
+    background: #eee;
+}
+
+.smooth-cal__labels li:first-child {
+	border-left: 1px solid black;
+}
+
+.smooth-cal__days {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.smooth-cal__days li {
+	position: relative;
+	float: left;
+	width: 14.287%;
+	height: 8.125em;
+	border: 0 solid black;
+    border-width: 0 1px 1px 0;
+}
+
+.smooth-cal__days li:nth-child(7n + 1) {
+	border-left: 1px solid black;
+}
+
+.smooth-cal__day {
+	position: absolute;
+	top: 1px;
+	left: 0;
+	padding: 5px 10px;
+	font-weight: bold;
+	font-size: .875em;
+	line-height: 1;
+	background: #eee;
+	text-align: center;
+}

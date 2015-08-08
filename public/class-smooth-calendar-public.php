@@ -112,7 +112,29 @@ class Smooth_Calendar_Public {
 	} // register_shortcodes()
 
 	public function calendar_shortcode() {
-		echo '<section class="smooth-cal" id="js-smooth-cal">test</section>';
+		$markup = '
+			<section class="smooth-cal" id="js-smooth-cal">
+				<header class="smooth-cal__header">
+					<a href="#" class="smooth-cal__prev" id="js-smooth-cal-prev">prev</a>
+					<h3 class="smooth-cal__month"><span id="js-smooth-cal-month"></span> <span id="js-smooth-cal-year"></span></h3>
+					<a href="#" class="smooth-cal__next" id="js-smooth-cal-next">next</a>
+				</header>
+
+				<ul class="smooth-cal__labels">
+					<li>S</li>
+					<li>M</li>
+					<li>T</li>
+					<li>W</li>
+					<li>T</li>
+					<li>F</li>
+					<li>S</li>
+				</ul>
+
+				<ul class="smooth-cal__days" id="js-smooth-cal-days">
+				</ul>
+			</section>';
+
+		echo $markup;
 	}
 
 }
