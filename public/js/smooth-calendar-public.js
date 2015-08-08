@@ -15,11 +15,14 @@ jQuery(document).ready(function ($) {
 		monthEl: $('#js-smooth-cal-month'),
 		yearEl: $('#js-smooth-cal-year'),
 		monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
-		]
+		],
+		firstMonthDay: 0
 	}
 
 	// Kick things off with current month
 	SmoothCalendar.prototype.init = function () {
+		var self = this;
+
 		// Append 0 to month
 		var formatMonth = function (date) {
 			if (date.getMonth() < 10) {
@@ -33,12 +36,25 @@ jQuery(document).ready(function ($) {
 		}
 
 		// Get number of days in month
-		function daysInMonth (month,year) {
+		var daysInMonth = function (month,year) {
 			return new Date(year, month, 0).getDate();
 		}
 
 		// Number of days in current month
 		this.vars.numDays = daysInMonth(this.vars.dateObj.getMonth() + 1, this.vars.dateObj.getFullYear());
+
+		var firstDayOfMonth = function () {
+			var day = self.vars.dateObj.getDay() + 1;
+
+			if (day == 7) {
+				return 0;
+			} else {
+				return self.vars.dateObj.getDay() + 1;
+			}
+		}
+
+		// First day of the month
+		this.vars.firstMonthDay = firstDayOfMonth();
 
 		// Current month
 		this.vars.month = formatMonth(this.vars.dateObj)
@@ -82,11 +98,17 @@ jQuery(document).ready(function ($) {
 	SmoothCalendar.prototype.buildDays = function () {
 		var self = this;
 
+		length = (this.vars.numDays + 1) + this.vars.firstMonthDay;
+
 		// Clear out list
 		self.vars.daysList.empty();
 
-		for (var i = 1; i < this.vars.numDays + 1; i++) {
-			self.vars.daysList.append('<li><span class="smooth-cal__day">' + i + '</span></li>')
+		for (var i = 1; i < length; i++) {
+			if (i <= this.vars.firstMonthDay) {
+				self.vars.daysList.append('<li></li>');
+			} else {
+				self.vars.daysList.append('<li><span class="smooth-cal__day">' + (i - this.vars.firstMonthDay) + '</span></li>');
+			}
 		}
 	}
 
@@ -105,7 +127,7 @@ jQuery(document).ready(function ($) {
 	// Update the calendar in the DOM
 	SmoothCalendar.prototype.updateDom = function (events) {
 		$.each(events, function (index, event) {
-			console.log(event);
+			
 		});
 	}
 
