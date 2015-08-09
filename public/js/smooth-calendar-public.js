@@ -151,7 +151,7 @@ jQuery(document).ready(function ($) {
 		var self = this;
 
 		$.ajax({
-			url: '/wp-json/posts?type=calendar&filter[meta_value][month]=' + this.vars.month + '&filter[meta_value][year]=' + this.vars.year,
+			url: '/wp-json/posts?type=calendar&filter[meta_value][month]=' + self.vars.month + '&[meta_value][year]=' + self.vars.year,
 			success: function (events) {
 				self.updateDom(events);
 			}
@@ -172,6 +172,7 @@ jQuery(document).ready(function ($) {
 		}
 
 		$.each(events, function (index, event) {
+			console.log(event);
 			var title = event.title,
 				truncatedTitle = truncate(title),
 				date = event.calendar.date,
