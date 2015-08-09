@@ -160,10 +160,20 @@ jQuery(document).ready(function ($) {
 
 	// Update the calendar in the DOM
 	SmoothCalendar.prototype.updateDom = function (events) {
-		var self = this;
+		var self = this,
+			maxChar = 25;
+
+		var truncate = function (text) {
+			if (text.length > 25) {
+				return text.substring(0, 25) + '...';
+			} else {
+				return text;
+			}
+		}
 
 		$.each(events, function (index, event) {
 			var title = event.title,
+				truncatedTitle = truncate(title),
 				date = event.calendar.date,
 				dateFormatted = event.calendar.dateFormatted,
 				location = event.calendar.location,
@@ -176,7 +186,7 @@ jQuery(document).ready(function ($) {
 				content = '';
 
 				content += '<div class="smooth-cal__event">';
-				content += '<a class="smooth-cal__link" href="#">' + title + '</a>';
+				content += '<a class="smooth-cal__link" href="#">' + truncatedTitle + '</a>';
 				content += '<div class="smooth-cal__deets">';
 				content += '<h4>' + title + '</h4>';
 
