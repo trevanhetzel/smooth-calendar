@@ -99,3 +99,13 @@
 	background: #eee;
 	text-align: center;
 }
+
+.smooth-cal__inner {
+	font-size: 16px;
+	padding: 2.25em .5em 1em;
+}
+
+.smooth-cal__link {
+	font-size: 14px;
+	text-decoration: none;
+}

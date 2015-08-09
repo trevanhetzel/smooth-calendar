@@ -5,6 +5,7 @@ jQuery(document).ready(function ($) {
 	}
 
 	SmoothCalendar.prototype.vars = {
+		cal: $('#js-smooth-cal'),
 		month: 0,
 		year: 0,
 		numDays: 0,
@@ -72,9 +73,6 @@ jQuery(document).ready(function ($) {
 
 		// Build the calendar
 		this.buildDays();
-		
-		// Fetch events
-		this.getData();
 	}
 
 	// Watch for month changes
@@ -102,12 +100,11 @@ jQuery(document).ready(function ($) {
 
 	// Output list items for days in month
 	SmoothCalendar.prototype.buildDays = function () {
-		var self = this;
-
-		// Number of days in month + first day of month offset
-		var length = (this.vars.numDays + 1) + this.vars.firstMonthDay;
-
-		var colCount = 7,
+		var self = this,
+			dateAttr,
+			// Number of days in month + first day of month offset
+			length = (this.vars.numDays + 1) + this.vars.firstMonthDay,
+			colCount = 7,
 			cellCount;
 
 		if ((length - 1) > 35) {
@@ -117,17 +114,36 @@ jQuery(document).ready(function ($) {
 		}
 
 		// Clear out list
-		self.vars.daysList.empty();
+		this.vars.daysList.empty();
+
+		// Append 0 to month
+		var formatMonth = function (date) {
+			if (date < 10) {
+				return '0' + date;
+			} else {
+				return date;
+			}
+		}
 
 		for (var i = 1; i < cellCount; i++) {
 			if (i <= this.vars.firstMonthDay) {
+				// Fill beginning empty days
 				self.vars.daysList.append('<li></li>');
 			} else if (i < length) {
-				self.vars.daysList.append('<li><span class="smooth-cal__day">' + (i - this.vars.firstMonthDay) + '</span></li>');
+				// Fill days
+
+				// Set data attr for date comparison
+				dateAttr = self.vars.year + '-' + self.vars.month + '-' + formatMonth(i - 1);
+
+				self.vars.daysList.append('<li data-date="' + dateAttr + '"><span class="smooth-cal__day">' + (i - self.vars.firstMonthDay) + '</span><div class="smooth-cal__inner"></div></li>');
 			} else {
+				// Fill ending empty days
 				self.vars.daysList.append('<li></li>');
 			}
 		}
+
+		// Fetch data
+		this.getData();
 	}
 
 	// Fetch the data from the REST API
@@ -144,7 +160,14 @@ jQuery(document).ready(function ($) {
 
 	// Update the calendar in the DOM
 	SmoothCalendar.prototype.updateDom = function (events) {
+		var self = this;
+
 		$.each(events, function (index, event) {
+			console.log(event)
+			var date = event.calendar.date,
+				matchingItem = self.vars.cal.find('li[data-date="' + date + '"] .smooth-cal__inner');
+
+			matchingItem.append('<a class="smooth-cal__link" href="#">' + event.title + '</a>');
 			
 		});
 	}
