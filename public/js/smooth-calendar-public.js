@@ -16,7 +16,8 @@ jQuery(document).ready(function ($) {
 		yearEl: $('#js-smooth-cal-year'),
 		monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
 		],
-		firstMonthDay: 0
+		firstMonthDay: 0,
+		leftOverDays: 0
 	}
 
 	// Kick things off with current month
@@ -40,9 +41,6 @@ jQuery(document).ready(function ($) {
 			return new Date(year, month, 0).getDate();
 		}
 
-		// Number of days in current month
-		this.vars.numDays = daysInMonth(this.vars.dateObj.getMonth() + 1, this.vars.dateObj.getFullYear());
-
 		var firstDayOfMonth = function () {
 			var day = self.vars.dateObj.getDay() + 1;
 
@@ -53,11 +51,18 @@ jQuery(document).ready(function ($) {
 			}
 		}
 
+		// Number of days in current month
+		this.vars.numDays = daysInMonth(this.vars.dateObj.getMonth() + 1, this.vars.dateObj.getFullYear());
+
 		// First day of the month
 		this.vars.firstMonthDay = firstDayOfMonth();
 
+		// Leftover days in month
+		this.vars.leftOverDays = this.vars.numDays - (this.vars.numDays - this.vars.firstMonthDay);
+		
 		// Current month
 		this.vars.month = formatMonth(this.vars.dateObj)
+
 		// Current month
 		this.vars.year = this.vars.dateObj.getFullYear();
 
@@ -67,6 +72,7 @@ jQuery(document).ready(function ($) {
 
 		// Build the calendar
 		this.buildDays();
+		
 		// Fetch events
 		this.getData();
 	}
@@ -98,16 +104,28 @@ jQuery(document).ready(function ($) {
 	SmoothCalendar.prototype.buildDays = function () {
 		var self = this;
 
-		length = (this.vars.numDays + 1) + this.vars.firstMonthDay;
+		// Number of days in month + first day of month offset
+		var length = (this.vars.numDays + 1) + this.vars.firstMonthDay;
+
+		var colCount = 7,
+			cellCount;
+
+		if ((length - 1) > 35) {
+			cellCount = 43;
+		} else {
+			cellCount = 36;
+		}
 
 		// Clear out list
 		self.vars.daysList.empty();
 
-		for (var i = 1; i < length; i++) {
+		for (var i = 1; i < cellCount; i++) {
 			if (i <= this.vars.firstMonthDay) {
 				self.vars.daysList.append('<li></li>');
-			} else {
+			} else if (i < length) {
 				self.vars.daysList.append('<li><span class="smooth-cal__day">' + (i - this.vars.firstMonthDay) + '</span></li>');
+			} else {
+				self.vars.daysList.append('<li></li>');
 			}
 		}
 	}

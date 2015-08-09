@@ -58,7 +58,7 @@
 
 .smooth-cal__labels li {
 	float: left;
-	width: 14.287%;
+	width: 14.286%;
 	text-align: center;
 	border: 0 solid black;
     border-width: 1px 1px 1px 0;
@@ -78,7 +78,7 @@
 .smooth-cal__days li {
 	position: relative;
 	float: left;
-	width: 14.287%;
+	width: 14.286%;
 	height: 8.125em;
 	border: 0 solid black;
     border-width: 0 1px 1px 0;
