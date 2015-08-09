@@ -40,7 +40,7 @@ $description_value = get_post_meta( $post->ID, 'meta_calendar_description', true
 				<label for="calendar_start"><?php _e( 'Start time', '' ); ?></label>
 			</th>
 			<td>
-				<input type="time" name="calendar_start" id="calendar_start" value="<?php echo esc_attr( $start_value ); ?>" class="regular-text ltr">
+				<input type="text" name="calendar_start" id="calendar_start" value="<?php echo esc_attr( $start_value ); ?>" class="regular-text ltr">
 			</td>
 		</tr>
 		<tr>
@@ -48,7 +48,7 @@ $description_value = get_post_meta( $post->ID, 'meta_calendar_description', true
 				<label for="calendar_end"><?php _e( 'End time', '' ); ?></label>
 			</th>
 			<td>
-				<input type="time" name="calendar_end" id="calendar_end" value="<?php echo esc_attr( $end_value ); ?>" class="regular-text ltr">
+				<input type="text" name="calendar_end" id="calendar_end" value="<?php echo esc_attr( $end_value ); ?>" class="regular-text ltr">
 			</td>
 		</tr>
 		<tr>

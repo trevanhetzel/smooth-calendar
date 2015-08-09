@@ -113,6 +113,7 @@
 /* Event row in cell */
 .smooth-cal__event {
 	position: relative;
+	margin: 0 0 1em;
 }
 
 .smooth-cal__event:hover .smooth-cal__deets {

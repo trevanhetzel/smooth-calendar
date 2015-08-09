@@ -167,21 +167,45 @@ jQuery(document).ready(function ($) {
 				date = event.calendar.date,
 				dateFormatted = event.calendar.dateFormatted,
 				location = event.calendar.location,
-				time = event.calendar.start,
+				startTime = event.calendar.start,
+				endTime = event.calendar.end,
 				description = event.calendar.description,
 				matchingItem = self.vars.cal.find('li[data-date="' + date + '"] .smooth-cal__inner');
 
 			var buildPopup = function () {
-				return '<div class="smooth-cal__event">' +
-					'<a class="smooth-cal__link" href="#">' + title + '</a>' +
-					'<div class="smooth-cal__deets">' +
-						'<h4>' + title + '</h4>' +
-						'<p><strong>Date: </strong>' + dateFormatted + '</p>' +
-						'<p><strong>Location: </strong>' + location + '</p>' +
-						'<p><strong>Time: </strong>' + time + '</p>' +
-						'<p><strong>Description: </strong>' + description + '</p>' +
-					'</div>' +
-				'</div>'
+				content = '';
+
+				content += '<div class="smooth-cal__event">';
+				content += '<a class="smooth-cal__link" href="#">' + title + '</a>';
+				content += '<div class="smooth-cal__deets">';
+				content += '<h4>' + title + '</h4>';
+
+				if (dateFormatted) {
+					content += '<p><strong>Date: </strong>' + dateFormatted + '</p>';
+				}
+
+				if (location) {
+					content += '<p><strong>Location: </strong>' + location + '</p>';
+				}
+
+				if (startTime) {
+					content += '<p><strong>Time: </strong>' + startTime;
+				}
+
+				if (endTime) {
+					content += ' - ' + endTime + '</p>';
+				} else if (startTime) {
+					content += '</p>';
+				}
+
+				if (description) {
+					content += '<p><strong>Description: </strong>' + description + '</p>';
+				}
+
+				content += '</div>';
+				content += '</div>';
+
+				return content;
 			}
 
 			matchingItem.append(buildPopup());
