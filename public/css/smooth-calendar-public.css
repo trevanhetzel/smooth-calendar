@@ -34,18 +34,67 @@
 	top: 50%;
 	-webkit-transform: translateY(-50%);
 	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
-	color: black;
+	width: 25px;
+	height: 5px;
 	text-decoration: none;
 	border: 0 !important;
+	text-indent: -9999px;
+}
+
+.smooth-cal__prev::before,
+.smooth-cal__next::before{
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	width: 51%;
+	height: 100%;
+	background: black;
+	-webkit-transform: skew(0deg, 40deg);
+	-moz-transform: skew(0deg, 40deg);
+	-ms-transform: skew(0deg, 40deg);
+	transform: skew(0deg, 40deg);
+}
+
+.smooth-cal__prev::after,
+.smooth-cal__next::after{
+	position: absolute;
+	content: "";
+	top: 0;
+	right: 0;
+	width: 50%;
+	height: 100%;
+	background: black;
+	-webkit-transform: skew(0deg, -40deg);
+	-moz-transform: skew(0deg, -40deg);
+	-ms-transform: skew(0deg, -40deg);
+	transform: skew(-0deg, -40deg);
 }
 
 .smooth-cal__prev {
 	left: 1em;
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg);
 }
 
 .smooth-cal__next {
 	right: 1em;
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+}
+
+.smooth-cal__next::before {
+	right: 0;
+}
+
+.smooth-cal__next::after {
+	right: 0;
 }
 
 /* Sun - Sat labels */
