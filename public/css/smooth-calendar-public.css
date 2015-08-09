@@ -48,7 +48,7 @@
 	right: 1em;
 }
 
-/* Sun - Sat label */
+/* Sun - Sat labels */
 .smooth-cal__labels {
 	margin: 0;
 	padding: 0;
@@ -69,12 +69,14 @@
 	border-left: 1px solid black;
 }
 
+/* Day cells */
 .smooth-cal__days {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
+/* Day cell */
 .smooth-cal__days li {
 	position: relative;
 	float: left;
@@ -88,6 +90,7 @@
 	border-left: 1px solid black;
 }
 
+/* Day of month in cell */
 .smooth-cal__day {
 	position: absolute;
 	top: 1px;
@@ -100,12 +103,52 @@
 	text-align: center;
 }
 
+/* Inner container of cell */
 .smooth-cal__inner {
-	font-size: 16px;
 	padding: 2.25em .5em 1em;
+	font-size: 16px;
+	line-height: 1.2;
 }
 
+/* Event row in cell */
+.smooth-cal__event {
+	position: relative;
+}
+
+.smooth-cal__event:hover .smooth-cal__deets {
+	display: block;
+}
+
+/* Link inside cell */
 .smooth-cal__link {
 	font-size: 14px;
 	text-decoration: none;
+}
+
+/* Event details tooltip */
+.smooth-cal__deets {
+	display: none;
+	position: absolute;
+	z-index: 1;
+	bottom: 100%;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	transform: translateX(-50%);
+	width: 20em;
+	max-width: 20em;
+	padding: 1em;
+	background: #fff;
+	box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+	border: 1px solid black;
+}
+
+.smooth-cal__deets p {
+	margin: 0 0 .75em;
+	font-size: 14px;
+}
+
+.smooth-cal__event .smooth-cal__deets h4 {
+	margin: 0 0 1em;
+	font-size: 18px;
 }

@@ -189,7 +189,8 @@ class Smooth_Calendar {
 				'location' => get_post_meta( $post['ID'], 'meta_calendar_location', true ),
 				'description' => get_post_meta( $post['ID'], 'meta_calendar_description', true ),
 				'month' => get_post_meta( $post['ID'], 'meta_calendar_month', true ),
-				'year' => get_post_meta( $post['ID'], 'meta_calendar_year', true )
+				'year' => get_post_meta( $post['ID'], 'meta_calendar_year', true ),
+				'dateFormatted' => get_post_meta( $post['ID'], 'meta_calendar_dateFormatted', true )
 			);
 			return $data;
 		}, 10, 3 );

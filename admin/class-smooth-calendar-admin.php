@@ -224,7 +224,10 @@ class Smooth_Calendar_Admin {
 		// Add month & year
 		$date = esc_attr( $date_data );
 		$month = date('m', strtotime($date));
+		$monthText = date('M', strtotime($date));
+		$day = date('j', strtotime($date));
 		$year = date('Y', strtotime($date));
+		$formatted_date = $monthText . ' ' . $day . ', ' . $year;
 
 		// Update the meta field in the database.
 		update_post_meta( $post_id, 'meta_calendar_date', $date_data );
@@ -234,6 +237,7 @@ class Smooth_Calendar_Admin {
 		update_post_meta( $post_id, 'meta_calendar_description', $description_data );
 		update_post_meta( $post_id, 'meta_calendar_month', $month );
 		update_post_meta( $post_id, 'meta_calendar_year', $year );
+		update_post_meta( $post_id, 'meta_calendar_dateFormatted', $formatted_date );
 
 
 	} // calendar_save_meta_box_data()

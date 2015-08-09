@@ -151,7 +151,7 @@ jQuery(document).ready(function ($) {
 		var self = this;
 
 		$.ajax({
-			url: '/wp-json/posts?type=calendar&filter[meta_value][month]=' + this.vars.month,
+			url: '/wp-json/posts?type=calendar&filter[meta_value][month]=' + this.vars.month + '&filter[meta_value][year]=' + this.vars.year,
 			success: function (events) {
 				self.updateDom(events);
 			}
@@ -163,15 +163,33 @@ jQuery(document).ready(function ($) {
 		var self = this;
 
 		$.each(events, function (index, event) {
-			console.log(event)
-			var date = event.calendar.date,
+			var title = event.title,
+				date = event.calendar.date,
+				dateFormatted = event.calendar.dateFormatted,
+				location = event.calendar.location,
+				time = event.calendar.start,
+				description = event.calendar.description,
 				matchingItem = self.vars.cal.find('li[data-date="' + date + '"] .smooth-cal__inner');
 
-			matchingItem.append('<a class="smooth-cal__link" href="#">' + event.title + '</a>');
+			var buildPopup = function () {
+				return '<div class="smooth-cal__event">' +
+					'<a class="smooth-cal__link" href="#">' + title + '</a>' +
+					'<div class="smooth-cal__deets">' +
+						'<h4>' + title + '</h4>' +
+						'<p><strong>Date: </strong>' + dateFormatted + '</p>' +
+						'<p><strong>Location: </strong>' + location + '</p>' +
+						'<p><strong>Time: </strong>' + time + '</p>' +
+						'<p><strong>Description: </strong>' + description + '</p>' +
+					'</div>' +
+				'</div>'
+			}
+
+			matchingItem.append(buildPopup());
 			
 		});
 	}
 
+	// Initialize only if calendar present
 	if ($('#js-smooth-cal').length) {
 		new SmoothCalendar();
 	}
