@@ -28,7 +28,6 @@ jQuery(document).ready(function ($) {
 		// Append 0 to month
 		var formatMonth = function (date) {
 			if (date.getMonth() < 9) {
-				console.log('less than 10')
 				var zeroPrepended = '0' + date.getMonth(),
 					addOne = Number(zeroPrepended) + 1;
 
@@ -104,7 +103,7 @@ jQuery(document).ready(function ($) {
 		var self = this,
 			dateAttr,
 			// Number of days in month + first day of month offset
-			length = (this.vars.numDays + 1) + this.vars.firstMonthDay,
+			length = this.vars.numDays + this.vars.firstMonthDay,
 			colCount = 7,
 			cellCount;
 
@@ -117,8 +116,8 @@ jQuery(document).ready(function ($) {
 		// Clear out list
 		this.vars.daysList.empty();
 
-		// Append 0 to month
-		var formatMonth = function (date) {
+		// Append 0 to day
+		var formatDay = function (date) {
 			if (date < 10) {
 				return '0' + date;
 			} else {
@@ -134,7 +133,7 @@ jQuery(document).ready(function ($) {
 				// Fill days
 
 				// Set data attr for date comparison
-				dateAttr = self.vars.year + '-' + self.vars.month + '-' + formatMonth(i - 1);
+				dateAttr = self.vars.year + '-' + self.vars.month + '-' + formatDay(i - this.vars.firstMonthDay);
 
 				self.vars.daysList.append('<li data-date="' + dateAttr + '"><span class="smooth-cal__day">' + (i - self.vars.firstMonthDay) + '</span><div class="smooth-cal__inner"></div></li>');
 			} else {
