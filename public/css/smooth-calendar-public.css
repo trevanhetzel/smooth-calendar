@@ -40,7 +40,7 @@
 	height: 5px;
 	text-decoration: none;
 	border: 0 !important;
-	text-indent: -9999px;
+	font-size: 0;
 }
 
 .smooth-cal__prev::before,
@@ -74,7 +74,7 @@
 }
 
 .smooth-cal__prev {
-	left: 1em;
+	left: 16px;
 	-webkit-transform: rotate(90deg);
 	-moz-transform: rotate(90deg);
 	-ms-transform: rotate(90deg);
@@ -82,7 +82,7 @@
 }
 
 .smooth-cal__next {
-	right: 1em;
+	right: 16px;
 	-webkit-transform: rotate(-90deg);
 	-moz-transform: rotate(-90deg);
 	-ms-transform: rotate(-90deg);
@@ -112,6 +112,10 @@
 	border: 0 solid black;
     border-width: 1px 1px 1px 0;
     background: #eee;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .smooth-cal__labels li:first-child {
@@ -133,6 +137,10 @@
 	height: 8.125em;
 	border: 0 solid black;
     border-width: 0 1px 1px 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .smooth-cal__days li:nth-child(7n + 1) {

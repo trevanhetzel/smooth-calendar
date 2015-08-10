@@ -27,13 +27,14 @@ jQuery(document).ready(function ($) {
 
 		// Append 0 to month
 		var formatMonth = function (date) {
-			if (date.getMonth() < 10) {
+			if (date.getMonth() < 9) {
+				console.log('less than 10')
 				var zeroPrepended = '0' + date.getMonth(),
 					addOne = Number(zeroPrepended) + 1;
 
 				return '0' + addOne;
 			} else {
-				return date.getMonth() + 1;
+				return Number(date.getMonth()) + 1;
 			}
 		}
 
@@ -62,7 +63,7 @@ jQuery(document).ready(function ($) {
 		this.vars.leftOverDays = this.vars.numDays - (this.vars.numDays - this.vars.firstMonthDay);
 		
 		// Current month
-		this.vars.month = formatMonth(this.vars.dateObj)
+		this.vars.month = formatMonth(this.vars.dateObj);
 
 		// Current month
 		this.vars.year = this.vars.dateObj.getFullYear();
@@ -172,7 +173,6 @@ jQuery(document).ready(function ($) {
 		}
 
 		$.each(events, function (index, event) {
-			console.log(event);
 			var title = event.title,
 				truncatedTitle = truncate(title),
 				date = event.calendar.date,
