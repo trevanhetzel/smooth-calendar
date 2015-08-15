@@ -43,14 +43,12 @@ jQuery(document).ready(function ($) {
 		}
 
 		var firstDayOfMonth = function () {
-			var day = self.vars.dateObj.getDay() + 6;
+			var day = self.vars.dateObj.getDay() + 1;
 
 			if (day == 7) {
 				return 0;
-			} else if (day > 6) {
-				return self.vars.dateObj.getDay() - 1;
 			} else {
-				return self.vars.dateObj.getDay() + 6;
+				return self.vars.dateObj.getDay() + 1;
 			}
 		}
 
@@ -127,13 +125,11 @@ jQuery(document).ready(function ($) {
 			}
 		}
 
-		console.log(this.vars.firstMonthDay);
-
 		for (var i = 1; i < cellCount; i++) {
 			if (i <= this.vars.firstMonthDay) {
 				// Fill beginning empty days
 				self.vars.daysList.append('<li></li>');
-			} else if (i < length) {
+			} else if (i < length + 1) {
 				// Fill days
 
 				// Set data attr for date comparison
