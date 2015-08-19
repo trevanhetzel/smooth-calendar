@@ -42,29 +42,22 @@ jQuery(document).ready(function ($) {
 			return new Date(year, month, 0).getDate();
 		}
 
-		var firstDayOfMonth = function () {
-			var day = self.vars.dateObj.getDay() + 1;
-
-			if (day == 7) {
-				return 0;
-			} else {
-				return self.vars.dateObj.getDay() + 1;
-			}
-		}
-
 		// Number of days in current month
 		this.vars.numDays = daysInMonth(this.vars.dateObj.getMonth() + 1, this.vars.dateObj.getFullYear());
 
 		// First day of the month
-		this.vars.firstMonthDay = firstDayOfMonth();
+		this.vars.firstMonthDay = new Date(this.vars.dateObj.getFullYear(), this.vars.dateObj.getMonth(), 1).getDay();
+
+		// Last day of the month
+		this.vars.lastMonthDay = new Date(this.vars.dateObj.getFullYear(), this.vars.dateObj.getMonth() + 1, 0).getDay();
 
 		// Leftover days in month
-		this.vars.leftOverDays = this.vars.numDays - (this.vars.numDays - this.vars.firstMonthDay);
+		this.vars.leftOverDays = 6 - this.vars.lastMonthDay;
 		
 		// Current month
 		this.vars.month = formatMonth(this.vars.dateObj);
 
-		// Current month
+		// Current year
 		this.vars.year = this.vars.dateObj.getFullYear();
 
 		// Update header month and year
@@ -100,50 +93,66 @@ jQuery(document).ready(function ($) {
 
 	// Output list items for days in month
 	SmoothCalendar.prototype.buildDays = function () {
-		var self = this,
-			dateAttr,
-			// Number of days in month + first day of month offset
-			length = this.vars.numDays + this.vars.firstMonthDay,
-			colCount = 7,
-			cellCount;
-
-		if ((length - 1) > 35) {
-			cellCount = 43;
-		} else {
-			cellCount = 36;
-		}
-
 		// Clear out list
 		this.vars.daysList.empty();
 
-		// Append 0 to day
-		var formatDay = function (date) {
-			if (date < 10) {
-				return '0' + date;
-			} else {
-				return date;
-			}
-		}
+		var cellCount = this.vars.numDays + this.vars.firstMonthDay + this.vars.leftOverDays + 1
+			excRemaining = this.vars.numDays + this.vars.firstMonthDay + 1;
 
 		for (var i = 1; i < cellCount; i++) {
 			if (i <= this.vars.firstMonthDay) {
-				// Fill beginning empty days
-				self.vars.daysList.append('<li></li>');
-			} else if (i < length + 1) {
-				// Fill days
-
-				// Set data attr for date comparison
-				dateAttr = self.vars.year + '-' + self.vars.month + '-' + formatDay(i - this.vars.firstMonthDay);
-
-				self.vars.daysList.append('<li data-date="' + dateAttr + '"><span class="smooth-cal__day">' + (i - self.vars.firstMonthDay) + '</span><div class="smooth-cal__inner"></div></li>');
+				this.vars.daysList.append('<li></li>');
+			} else if (i < excRemaining) {
+				this.vars.daysList.append('<li><span class="smooth-cal__day">' + (i - this.vars.firstMonthDay) + '</span><div class="smooth-cal__inner"></div></li>');
 			} else {
-				// Fill ending empty days
-				self.vars.daysList.append('<li></li>');
+				this.vars.daysList.append('<li></li>');
 			}
 		}
 
-		// Fetch data
-		this.getData();
+		// var self = this,
+		// 	dateAttr,
+		// 	// Number of days in month + first day of month offset
+		// 	length = this.vars.numDays + this.vars.firstMonthDay,
+		// 	colCount = 7,
+		// 	cellCount;
+
+		// if ((length - 1) > 35) {
+		// 	cellCount = 43;
+		// } else {
+		// 	cellCount = 36;
+		// }
+
+		// // Clear out list
+		// this.vars.daysList.empty();
+
+		// // Append 0 to day
+		// var formatDay = function (date) {
+		// 	if (date < 10) {
+		// 		return '0' + date;
+		// 	} else {
+		// 		return date;
+		// 	}
+		// }
+
+		// for (var i = 1; i < cellCount; i++) {
+		// 	if (i <= this.vars.firstMonthDay) {
+		// 		// Fill beginning empty days
+		// 		self.vars.daysList.append('<li></li>');
+		// 	} else if (i < length + 1) {
+		// 		// Fill days
+
+		// 		// Set data attr for date comparison
+		// 		dateAttr = self.vars.year + '-' + self.vars.month + '-' + formatDay(i - this.vars.firstMonthDay);
+
+		// 		self.vars.daysList.append('<li data-date="' + dateAttr + '"><span class="smooth-cal__day">' + (i - self.vars.firstMonthDay) + '</span><div class="smooth-cal__inner"></div></li>');
+		// 	} else {
+		// 		// Fill ending empty days
+		// 		self.vars.daysList.append('<li></li>');
+		// 	}
+		// }
+
+		// // Fetch data
+		// this.getData();
 	}
 
 	// Fetch the data from the REST API
