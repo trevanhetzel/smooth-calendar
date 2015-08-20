@@ -99,60 +99,29 @@ jQuery(document).ready(function ($) {
 		var cellCount = this.vars.numDays + this.vars.firstMonthDay + this.vars.leftOverDays + 1
 			excRemaining = this.vars.numDays + this.vars.firstMonthDay + 1;
 
+		// Append 0 to day
+		var formatDay = function (date) {
+			if (date < 10) {
+				return '0' + date;
+			} else {
+				return date;
+			}
+		}
+
 		for (var i = 1; i < cellCount; i++) {
 			if (i <= this.vars.firstMonthDay) {
 				this.vars.daysList.append('<li></li>');
 			} else if (i < excRemaining) {
-				this.vars.daysList.append('<li><span class="smooth-cal__day">' + (i - this.vars.firstMonthDay) + '</span><div class="smooth-cal__inner"></div></li>');
+				dateAttr = this.vars.year + '-' + this.vars.month + '-' + formatDay(i - this.vars.firstMonthDay);
+
+				this.vars.daysList.append('<li data-date="' + dateAttr + '"><span class="smooth-cal__day">' + (i - this.vars.firstMonthDay) + '</span><div class="smooth-cal__inner"></div></li>');
 			} else {
 				this.vars.daysList.append('<li></li>');
 			}
 		}
 
-		// var self = this,
-		// 	dateAttr,
-		// 	// Number of days in month + first day of month offset
-		// 	length = this.vars.numDays + this.vars.firstMonthDay,
-		// 	colCount = 7,
-		// 	cellCount;
-
-		// if ((length - 1) > 35) {
-		// 	cellCount = 43;
-		// } else {
-		// 	cellCount = 36;
-		// }
-
-		// // Clear out list
-		// this.vars.daysList.empty();
-
-		// // Append 0 to day
-		// var formatDay = function (date) {
-		// 	if (date < 10) {
-		// 		return '0' + date;
-		// 	} else {
-		// 		return date;
-		// 	}
-		// }
-
-		// for (var i = 1; i < cellCount; i++) {
-		// 	if (i <= this.vars.firstMonthDay) {
-		// 		// Fill beginning empty days
-		// 		self.vars.daysList.append('<li></li>');
-		// 	} else if (i < length + 1) {
-		// 		// Fill days
-
-		// 		// Set data attr for date comparison
-		// 		dateAttr = self.vars.year + '-' + self.vars.month + '-' + formatDay(i - this.vars.firstMonthDay);
-
-		// 		self.vars.daysList.append('<li data-date="' + dateAttr + '"><span class="smooth-cal__day">' + (i - self.vars.firstMonthDay) + '</span><div class="smooth-cal__inner"></div></li>');
-		// 	} else {
-		// 		// Fill ending empty days
-		// 		self.vars.daysList.append('<li></li>');
-		// 	}
-		// }
-
-		// // Fetch data
-		// this.getData();
+		// Fetch data
+		this.getData();
 	}
 
 	// Fetch the data from the REST API
