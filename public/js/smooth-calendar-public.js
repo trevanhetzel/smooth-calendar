@@ -25,6 +25,8 @@ jQuery(document).ready(function ($) {
 	SmoothCalendar.prototype.init = function () {
 		var self = this;
 
+
+
 		// Append 0 to month
 		var formatMonth = function (date) {
 			if (date.getMonth() < 9) {
@@ -76,7 +78,7 @@ jQuery(document).ready(function ($) {
 			e.preventDefault();
 
 			// Subtract a month
-			self.vars.dateObj.setMonth(self.vars.dateObj.getMonth() - 1);
+			self.vars.dateObj.setMonth(self.vars.dateObj.getMonth() - 1, 1);
 
 			self.init();
 		});
@@ -85,7 +87,7 @@ jQuery(document).ready(function ($) {
 			e.preventDefault();
 
 			// Add a month
-			self.vars.dateObj.setMonth(self.vars.dateObj.getMonth() + 1);
+			self.vars.dateObj.setMonth(self.vars.dateObj.getMonth() + 1, 1);
 
 			self.init();
 		});
