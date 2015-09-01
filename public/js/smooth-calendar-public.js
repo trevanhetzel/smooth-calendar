@@ -198,7 +198,9 @@ jQuery(document).ready(function ($) {
 				return content;
 			}
 
-			matchingItem.append(buildPopup());
+			if (matchingItem.length) {
+				matchingItem.append(buildPopup());
+			}
 			
 		});
 	}

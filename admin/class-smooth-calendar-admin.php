@@ -242,4 +242,24 @@ class Smooth_Calendar_Admin {
 
 	} // calendar_save_meta_box_data()
 
+	/**
+	 * Creates menu page
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 * @return 	void
+	 */
+	public function calendar_menu() {
+		add_options_page( 'Smooth Calendar Options', 'Smooth Calendar', 'manage_options', 'smooth-calendar', 'calendar_options' );
+
+		function calendar_options() {
+			if ( !current_user_can( 'manage_options' ) )  {
+				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+			}
+			echo '<div class="wrap">';
+			echo '<p>Form goes here.</p>';
+			echo '</div>';
+		}
+	} // calendar_menu()
+
 }
