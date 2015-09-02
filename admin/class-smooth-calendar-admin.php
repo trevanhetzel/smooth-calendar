@@ -73,7 +73,7 @@ class Smooth_Calendar_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/smooth-calendar-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/smooth-calendar-admin.css', array( 'wp-color-picker' ), $this->version, 'all' );
 
 	}
 
@@ -96,7 +96,7 @@ class Smooth_Calendar_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/smooth-calendar-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/smooth-calendar-admin.js', array( 'jquery', 'wp-color-picker' ), $this->version, false );
 
 	}
 
