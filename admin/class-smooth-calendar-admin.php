@@ -243,28 +243,6 @@ class Smooth_Calendar_Admin {
 	} // calendar_save_meta_box_data()
 
 	/**
-	 * Inits settings fields
-	 *
-	 * @since 	1.0.0
-	 * @return 	void
-	 */
-	function calendar_settings_init() {
-		// All callbacks must be valid names of functions, even if provided functions are blank
-		register_setting( 'calendar_group', 'option_name', 'sanitize_callback' );
-		add_settings_section( 'calendar_setting_section', 'Basic Options', 'calendar_setting_section_callback_function', 'smooth-calendar' );
-		add_settings_field( 'calendar_setting_permalink', 'Permalink', 'calendar_setting_callback_function', 'smooth-calendar', 'calendar_setting_section' );
-
-		function calendar_setting_section_callback_function() {
-			echo '<p>Intro text for our settings section</p>';
-		}
-
-		function calendar_setting_callback_function() {
-			echo 'test';
-			echo '<input name="calendar_setting_permalink" id="calendar_setting_permalink" type="checkbox" value="1" class="code" ' . checked( 1, get_option( 'calendar_setting_permalink' ), false ) . ' /> Explanation text';
- 		}
-	} // calendar_settings_init()
-
-	/**
 	 * Creates menu page
 	 *
 	 * @since 	1.0.0
@@ -278,13 +256,18 @@ class Smooth_Calendar_Admin {
 				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 			}
 
-			echo'<form method="POST" action="options.php">';
-			settings_fields( 'calendar_group' );
-			do_settings_sections( 'smooth-calendar' );
-			
-			submit_button();
-			echo '</form>';
+			include( plugin_dir_path( __FILE__ ) . 'partials/smooth-calendar-admin-options.php' );
 		} // calendar_options()
 	} // calendar_menu()
+
+	/**
+	 * Inits settings fields
+	 *
+	 * @since 	1.0.0
+	 * @return 	void
+	 */
+	function calendar_settings_init() {
+		register_setting('calendar_group','calendar_setting_permalink');
+	} // calendar_settings_init()
 
 }
