@@ -75,6 +75,31 @@ class Smooth_Calendar_Public {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/smooth-calendar-public.css', array(), $this->version, 'all' );
 
+		$header_bg = get_option('calendar_setting_header_bg');
+		$days_bg = get_option('calendar_setting_days_bg');
+		$text_color = get_option('calendar_setting_text_bg');
+		$link_color = get_option('calendar_setting_text_bg');
+
+		$inline_css = "
+			.smooth-cal__header {
+				background: {$header_bg};
+			}
+
+			.smooth-cal__labels li {
+				background: {$days_bg};
+			}
+
+			.smooth-cal {
+				color: {$text_color};
+			}
+
+			.smooth-cal a {
+				color: {$link_color};
+			}
+			";
+
+			wp_add_inline_style( $this->plugin_name, $inline_css );
+
 	}
 
 	/**
