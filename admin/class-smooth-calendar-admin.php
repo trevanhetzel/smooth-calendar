@@ -249,7 +249,7 @@ class Smooth_Calendar_Admin {
 	 * @return 	void
 	 */
 	function calendar_menu() {
-		add_options_page( 'Smooth Calendar Options', 'Smooth Calendar', 'manage_options', 'smooth-calendar', 'calendar_options' );
+		add_submenu_page( 'edit.php?post_type=calendar', 'Smooth Calendar Settigns', 'Settings', 'publish_posts', 'smooth-calendar-settings', 'calendar_options');
 
 		function calendar_options() {
 			if ( !current_user_can( 'manage_options' ) )  {
