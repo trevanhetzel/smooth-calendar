@@ -77,7 +77,7 @@ class Smooth_Calendar_Public {
 
 		$header_bg = get_option('calendar_setting_header_bg');
 		$days_bg = get_option('calendar_setting_days_bg');
-		$link_color = get_option('calendar_setting_text_bg');
+		$link_color = get_option('calendar_setting_link_bg');
 
 		$inline_css = "
 			.smooth-cal__header {
