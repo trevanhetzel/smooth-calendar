@@ -25,8 +25,6 @@ jQuery(document).ready(function ($) {
 	SmoothCalendar.prototype.init = function () {
 		var self = this;
 
-
-
 		// Append 0 to month
 		var formatMonth = function (date) {
 			if (date.getMonth() < 9) {
