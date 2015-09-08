@@ -32,10 +32,6 @@
 					<td><input name="calendar_setting_days_bg" id="calendar_setting_days_bg" type="text" class="regular-text" value="<?php echo get_option('calendar_setting_days_bg'); ?>"></td>
 				</tr>
 				<tr>
-					<th><label for="calendar_setting_text_bg">Text</label></th>
-					<td><input name="calendar_setting_text_bg" id="calendar_setting_text_bg" type="text" class="regular-text" value="<?php echo get_option('calendar_setting_text_bg'); ?>"></td>
-				</tr>
-				<tr>
 					<th><label for="calendar_setting_link_bg">Link</label></th>
 					<td><input name="calendar_setting_link_bg" id="calendar_setting_link_bg" type="text" class="regular-text" value="<?php echo get_option('calendar_setting_link_bg'); ?>"></td>
 				</tr>
