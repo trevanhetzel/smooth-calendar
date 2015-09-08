@@ -163,6 +163,9 @@ class Smooth_Calendar {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'calendar_menu', 10, 2 );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'calendar_settings_init', 10, 2 );
 
+		$this->loader->add_action( 'manage_calendar_posts_columns', $plugin_admin, 'calendar_columns_head');
+		$this->loader->add_action( 'manage_calendar_posts_custom_column', $plugin_admin, 'calendar_columns_content', 10, 2 );
+
 	}
 
 	/**

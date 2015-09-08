@@ -272,4 +272,30 @@ class Smooth_Calendar_Admin {
 		register_setting('calendar_group','calendar_setting_link_bg');
 	} // calendar_settings_init()
 
+	/**
+	 * Creates custom post type column title
+	 *
+	 * @since 	1.0.0
+	 * @return 	void
+	 */
+	public function calendar_columns_head($defaults) {
+		$defaults['event_date'] = 'Event Date';
+		return $defaults;
+	} // calendar_columns_head()
+
+	/**
+	 * Creates custom post type column
+	 *
+	 * @since 	1.0.0
+	 * @return 	void
+	 */
+	public function calendar_columns_content($column_name, $post_ID) {
+		if ($column_name == 'event_date') {
+			$post_event_date = get_post_meta(get_the_ID(), 'meta_calendar_date', true);
+	        if ($post_event_date) {
+	            echo date('M j, Y', strtotime($post_event_date));
+	        }
+		}
+	} // calendar_columns_content()
+
 }
