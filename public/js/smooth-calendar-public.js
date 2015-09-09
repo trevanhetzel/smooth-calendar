@@ -89,6 +89,19 @@ jQuery(document).ready(function ($) {
 
 			self.init();
 		});
+
+		// Show events on small screens
+		$(document)
+			.on('click', function () {
+				$('.smooth-cal__days li').removeClass('expanded');
+			})
+			.on('click', '.smooth-cal__trigger', function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				$('.smooth-cal__days li').removeClass('expanded');
+				$(this).parent().addClass('expanded');
+			})
 	}
 
 	// Output list items for days in month
@@ -158,7 +171,7 @@ jQuery(document).ready(function ($) {
 				startTime = event.calendar.start,
 				endTime = event.calendar.end,
 				description = event.calendar.description,
-				matchingItem = self.vars.cal.find('li[data-date="' + date + '"] .smooth-cal__inner');
+				matchingItem = self.vars.cal.find('li[data-date="' + date + '"]');
 
 			var buildPopup = function () {
 				content = '';
@@ -197,7 +210,11 @@ jQuery(document).ready(function ($) {
 			}
 
 			if (matchingItem.length) {
-				matchingItem.append(buildPopup());
+				if (matchingItem.find('.smooth-cal__trigger').length < 1) {
+					matchingItem.prepend('<a href="#" class="smooth-cal__trigger"></a>');
+				}
+
+				matchingItem.find('.smooth-cal__inner').append(buildPopup());
 			}
 			
 		});

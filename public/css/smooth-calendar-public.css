@@ -36,11 +36,27 @@
 	-moz-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
-	width: 25px;
-	height: 5px;
+	width: 18px;
+	height: 4px;
 	text-decoration: none;
 	border: 0 !important;
 	font-size: 0;
+}
+
+@media all and (min-width: 500px) {
+	.smooth-cal__prev,
+	.smooth-cal__next {
+		width: 21px;
+		height: 4px;
+	}
+}
+
+@media all and (min-width: 500px) {
+	.smooth-cal__prev,
+	.smooth-cal__next {
+		width: 25px;
+		height: 5px;
+	}
 }
 
 .smooth-cal__prev::before,
@@ -134,7 +150,7 @@
 	position: relative;
 	float: left;
 	width: 14.286%;
-	height: 8.125em;
+	height: 3.125em;
 	border: 0 solid black;
     border-width: 0 1px 1px 0;
     -moz-box-sizing: border-box;
@@ -143,8 +159,57 @@
     box-sizing: border-box;
 }
 
+@media all and (min-width: 500px) {
+	.smooth-cal__days li {
+		height: 5.125em;
+	}
+}
+
+@media all and (min-width: 768px) {
+	.smooth-cal__days li {
+		height: 8.125em;
+	} 	
+}
+
 .smooth-cal__days li:nth-child(7n + 1) {
 	border-left: 1px solid black;
+}
+
+.smooth-cal__trigger {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #3498db;
+	border-bottom: 0 !important;
+}
+
+.smooth-cal__trigger::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	content: "";
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+}
+
+.smooth-cal__trigger + .smooth-cal__day {
+	background: #3498db;
+	color: #fff;
+}
+
+@media all and (min-width: 768px) {
+	.smooth-cal__trigger {
+		display: none;
+	}
+
+	.smooth-cal__trigger + .smooth-cal__day {
+		background: #eee;
+		color: inherit;
+	}
 }
 
 /* Day of month in cell */
@@ -152,6 +217,7 @@
 	position: absolute;
 	top: 1px;
 	left: 0;
+	z-index: 1;
 	padding: 5px 10px;
 	font-weight: bold;
 	font-size: .875em;
@@ -162,9 +228,68 @@
 
 /* Inner container of cell */
 .smooth-cal__inner {
+	display: none;
 	padding: 2.25em .5em 1em;
 	font-size: 16px;
 	line-height: 1.2;
+}
+
+@media all and (min-width: 768px) {
+	.smooth-cal__inner {
+		display: block;
+	}
+}
+
+.expanded .smooth-cal__inner {
+	display: block;
+	position: absolute;
+	top: 2.8em;
+	z-index: 2;
+	width: 15em;
+	background: #fff;
+	border: 1px solid #000;
+}
+
+@media all and (min-width: 500px) {
+	.expanded .smooth-cal__inner {
+		top: 4.7em;
+	}
+}
+
+/* First day */
+.smooth-cal__days li.expanded:nth-child(7n+1) .smooth-cal__inner {
+	left: 0;
+}
+
+/* Second day */
+.smooth-cal__days li.expanded:nth-child(7n+2) .smooth-cal__inner {
+	left: 0;
+}
+
+/* Third day */
+.smooth-cal__days li.expanded:nth-child(7n+3) .smooth-cal__inner {
+	left: -63px;
+}
+
+/* Fourth day */
+.smooth-cal__days li.expanded:nth-child(7n+4) .smooth-cal__inner {
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+/* Fifth day */
+.smooth-cal__days li.expanded:nth-child(7n+5) .smooth-cal__inner {
+	right: -63px;
+}
+
+/* Sixth day */
+.smooth-cal__days li.expanded:nth-child(7n+6) .smooth-cal__inner {
+	right: 0;
+}
+
+/* Seventh day */
+.smooth-cal__days li.expanded:nth-child(7n+7) .smooth-cal__inner {
+	right: 0;
 }
 
 /* Event row in cell */
@@ -183,11 +308,17 @@
 	text-decoration: none;
 }
 
+@media all and (min-width: 768px) {
+	.smooth-cal__link {
+		display: block;
+	}
+}
+
 /* Event details tooltip */
 .smooth-cal__deets {
 	display: none;
 	position: absolute;
-	z-index: 1;
+	z-index: 2;
 	bottom: 100%;
 	left: 50%;
 	-webkit-transform: translateX(-50%);
