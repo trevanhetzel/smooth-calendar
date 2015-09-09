@@ -311,6 +311,9 @@
 @media all and (min-width: 768px) {
 	.smooth-cal__link {
 		display: block;
+		width: 100%;
+		overflow: hidden;
+		white-space: nowrap;
 	}
 }
 

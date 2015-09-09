@@ -99,8 +99,15 @@ jQuery(document).ready(function ($) {
 				e.preventDefault();
 				e.stopPropagation();
 
-				$('.smooth-cal__days li').removeClass('expanded');
-				$(this).parent().addClass('expanded');
+				
+
+				if ($(this).parent().hasClass('expanded')) {
+					$(this).parent().removeClass('expanded');
+					$('.smooth-cal__days li').removeClass('expanded');
+				} else {
+					$('.smooth-cal__days li').removeClass('expanded');
+					$(this).parent().addClass('expanded');
+				}
 			})
 	}
 
