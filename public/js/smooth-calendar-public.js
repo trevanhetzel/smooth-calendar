@@ -99,8 +99,6 @@ jQuery(document).ready(function ($) {
 				e.preventDefault();
 				e.stopPropagation();
 
-				
-
 				if ($(this).parent().hasClass('expanded')) {
 					$(this).parent().removeClass('expanded');
 					$('.smooth-cal__days li').removeClass('expanded');
@@ -148,8 +146,10 @@ jQuery(document).ready(function ($) {
 	SmoothCalendar.prototype.getData = function () {
 		var self = this;
 
+		// url: '/wp-json/posts?type=calendar&posts_per_page=50&filter[meta_value][month]=' + self.vars.month + '&[meta_value][year]=' + self.vars.year,
+
 		$.ajax({
-			url: '/wp-json/posts?type=calendar&filter[meta_value][month]=' + self.vars.month + '&[meta_value][year]=' + self.vars.year,
+			url: '/wp-json/wp/v2/calendar?posts_per_page=50&filter[meta_value][month]=' + self.vars.month + '&[meta_value][year]=' + self.vars.year,
 			success: function (events) {
 				self.updateDom(events);
 			}
@@ -170,14 +170,14 @@ jQuery(document).ready(function ($) {
 		}
 
 		$.each(events, function (index, event) {
-			var title = event.title,
+			var title = event.title.rendered,
 				truncatedTitle = truncate(title),
-				date = event.calendar.date,
-				dateFormatted = event.calendar.dateFormatted,
-				location = event.calendar.location,
-				startTime = event.calendar.start,
-				endTime = event.calendar.end,
-				description = event.calendar.description,
+				date = event.meta_calendar_date,
+				dateFormatted = event.meta_calendar_dateFormatted,
+				location = event.meta_calendar_location,
+				startTime = event.meta_calendar_start,
+				endTime = event.meta_calendar_end,
+				description = event.meta_calendar_description,
 				matchingItem = self.vars.cal.find('li[data-date="' + date + '"]');
 
 			var buildPopup = function () {

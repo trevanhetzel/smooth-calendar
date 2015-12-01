@@ -184,27 +184,34 @@ class Smooth_Calendar {
 
 		$this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
 
-		// Expose extra meta values to API
-		add_filter( 'json_prepare_post', function ( $data, $post, $context ) {
-			$data['calendar'] = array(
-				'date' => get_post_meta( $post['ID'], 'meta_calendar_date', true ),
-				'start' => get_post_meta( $post['ID'], 'meta_calendar_start', true ),
-				'end' => get_post_meta( $post['ID'], 'meta_calendar_end', true ),
-				'location' => get_post_meta( $post['ID'], 'meta_calendar_location', true ),
-				'description' => get_post_meta( $post['ID'], 'meta_calendar_description', true ),
-				'month' => get_post_meta( $post['ID'], 'meta_calendar_month', true ),
-				'year' => get_post_meta( $post['ID'], 'meta_calendar_year', true ),
-				'dateFormatted' => get_post_meta( $post['ID'], 'meta_calendar_dateFormatted', true )
+		/**
+		 * Expose extra meta values to API
+		 */
+		add_action( 'rest_api_init', 'calendar_register_meta' );
+
+		function calendar_register_meta() {
+			$meta_args = array(
+				'get_callback'    => 'calendar_get_field',
+				'update_callback' => null,
+				'schema'          => null,
 			);
-			return $data;
-		}, 10, 3 );
 
+			register_api_field( 'calendar', 'meta_calendar_date', $meta_args);
+			register_api_field( 'calendar', 'meta_calendar_start', $meta_args);
+			register_api_field( 'calendar', 'meta_calendar_end', $meta_args);
+			register_api_field( 'calendar', 'meta_calendar_location', $meta_args);
+			register_api_field( 'calendar', 'meta_calendar_description', $meta_args);
+			register_api_field( 'calendar', 'meta_calendar_month', $meta_args);
+			register_api_field( 'calendar', 'meta_calendar_year', $meta_args);
+			register_api_field( 'calendar', 'meta_calendar_dateFormatted', $meta_args);
+		}
 
-		// Allow extra meta fields to be queried through API
-		add_filter( 'json_query_vars', function ( $vars ) {
-			$vars[] = 'meta_value';
-			return $vars;
-		});
+		/**
+		 * Get the value of meta field
+		 */
+		function calendar_get_field( $object, $field_name, $request ) {
+		    return get_post_meta( $object[ 'id' ], $field_name, true );
+		}
 
 	}
 

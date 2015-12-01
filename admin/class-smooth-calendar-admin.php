@@ -131,6 +131,7 @@ class Smooth_Calendar_Admin {
 		$opts['show_in_menu']							= true;
 		$opts['show_in_nav_menu']						= true;
 		$opts['show_ui']								= true;
+		$opts['show_in_rest']								= true;
 		$opts['supports']								= array( 'title' );
 		$opts['taxonomies']								= array();
 		$opts['capabilities']['delete_others_posts']	= "delete_others_{$cap_type}s";
