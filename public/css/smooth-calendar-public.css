@@ -41,6 +41,7 @@
 	text-decoration: none;
 	border: 0 !important;
 	font-size: 0;
+	box-shadow: none !important;
 }
 
 @media all and (min-width: 500px) {
@@ -126,12 +127,12 @@
 	width: 14.286%;
 	text-align: center;
 	border: 0 solid black;
-    border-width: 1px 1px 1px 0;
-    background: #eee;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    box-sizing: border-box;
+  border-width: 1px 1px 1px 0;
+  background: #eee;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .smooth-cal__labels li:first-child {
@@ -152,11 +153,11 @@
 	width: 14.286%;
 	height: 3.125em;
 	border: 0 solid black;
-    border-width: 0 1px 1px 0;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    box-sizing: border-box;
+  border-width: 0 1px 1px 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 @media all and (min-width: 500px) {
