@@ -146,10 +146,8 @@ jQuery(document).ready(function ($) {
 	SmoothCalendar.prototype.getData = function () {
 		var self = this;
 
-		// url: '/wp-json/posts?type=calendar&posts_per_page=50&filter[meta_value][month]=' + self.vars.month + '&[meta_value][year]=' + self.vars.year,
-
 		$.ajax({
-			url: '/wp-json/wp/v2/calendar?posts_per_page=50&filter[meta_value][month]=' + self.vars.month + '&[meta_value][year]=' + self.vars.year,
+			url: '/wp-json/wp/v2/calendar?&filter[meta_value][month]=' + self.vars.month + '&[meta_value][year]=' + self.vars.year + '&filter[posts_per_page]=100',
 			success: function (events) {
 				self.updateDom(events);
 			}
