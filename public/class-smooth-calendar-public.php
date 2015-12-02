@@ -132,6 +132,8 @@ class Smooth_Calendar_Public {
 	} // register_shortcodes()
 
 	public function calendar_shortcode() {
+		$single = get_option('calendar_setting_single');
+		echo $single;
 		$markup = '
 			<section class="smooth-cal" id="js-smooth-cal">
 				<header class="smooth-cal__header">
