@@ -210,7 +210,14 @@ class Smooth_Calendar {
 		 * Get the value of meta field
 		 */
 		function calendar_get_field( $object, $field_name, $request ) {
-		    return get_post_meta( $object[ 'id' ], $field_name, true );
+			return get_post_meta( $object[ 'id' ], $field_name, true );
+		}
+
+		add_filter( 'rest_query_vars', 'flux_allow_meta_query' );
+		
+		function flux_allow_meta_query ($valid_vars) {
+			$valid_vars = array_merge( $valid_vars, array( 'meta_key', 'meta_value', 'meta_compare' ) );
+			return $valid_vars;
 		}
 
 	}

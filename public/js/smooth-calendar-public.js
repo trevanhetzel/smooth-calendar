@@ -18,12 +18,17 @@ jQuery(document).ready(function ($) {
 		monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
 		],
 		firstMonthDay: 0,
-		leftOverDays: 0
+		leftOverDays: 0,
+		single: false
 	}
 
 	// Kick things off with current month
 	SmoothCalendar.prototype.init = function () {
 		var self = this;
+
+		if (this.vars.cal.data('single')) {
+			this.vars.single = true;
+		}
 
 		// Append 0 to month
 		var formatMonth = function (date) {
@@ -147,7 +152,7 @@ jQuery(document).ready(function ($) {
 		var self = this;
 
 		$.ajax({
-			url: '/wp-json/wp/v2/calendar?&filter[meta_value][month]=' + self.vars.month + '&[meta_value][year]=' + self.vars.year + '&filter[posts_per_page]=100',
+			url: '/wp-json/wp/v2/calendar?&filter[posts_per_page]=100&filter[meta_key]=meta_calendar_month&filter[meta_value]=' + self.vars.month + '&filter[meta_key]=meta_calendar_year&filter[meta_value]=' + self.vars.year,
 			success: function (events) {
 				self.updateDom(events);
 			}
@@ -206,6 +211,10 @@ jQuery(document).ready(function ($) {
 
 				if (description) {
 					content += '<p><strong>Description: </strong>' + description + '</p>';
+				}
+
+				if (self.vars.single) {
+					content += '<p><a href="' + event.link + '" class="smooth-cal__btn">More information &raquo;</a></p>';
 				}
 
 				content += '</div>';

@@ -133,9 +133,14 @@ class Smooth_Calendar_Public {
 
 	public function calendar_shortcode() {
 		$single = get_option('calendar_setting_single');
-		echo $single;
-		$markup = '
-			<section class="smooth-cal" id="js-smooth-cal">
+		
+		if ($single) {
+			$markup = '<section class="smooth-cal" id="js-smooth-cal" data-single="true">';
+		} else {
+			$markup = '<section class="smooth-cal" id="js-smooth-cal">';
+		}
+
+		$markup .= '
 				<header class="smooth-cal__header">
 					<a href="#" class="smooth-cal__prev" id="js-smooth-cal-prev">prev</a>
 					<h3 class="smooth-cal__month"><span id="js-smooth-cal-month"></span> <span id="js-smooth-cal-year"></span></h3>
