@@ -36,9 +36,9 @@ There is an abundance of WordPress calendar plugins, but if you're looking for a
 
 == Installation ==
 
-1. Upload `smooth-calendar` to the `/wp-content/plugins/` directory
+1. Upload [`smooth-calendar`](https://github.com/trevanhetzel/smooth-calendar/archive/master.zip) to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. 2. Install version 2.0 or later of the [WP REST API](https://wordpress.org/plugins/rest-api/) plugin (Smooth Calendar depends upon the WP REST API)
+3. Install version 2.0 or later of the [WP REST API](https://wordpress.org/plugins/rest-api/) plugin (Smooth Calendar depends upon the WP REST API)
 4. Place the calendar in a page using the shortcode `[smooth-calendar`] (optionally place it in a theme file with `<?php echo do_shortcode('[smooth-calendar]'); ?>`)
 5. Update the settings by viewing the Settings page under the 'Calendar' tab. If you'd like each event to have its own page, check the 'Enable single pages' checkbox.
 
