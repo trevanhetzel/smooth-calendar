@@ -52,6 +52,8 @@ The single event template can be overridden by adding a file in your theme calle
 
 No. Currently, only one calendar is supported. You could technically display multiple calendars by using categories or tags though.
 
+== Screenshots ==
+
 == Changelog ==
 
 = 1.0 =
