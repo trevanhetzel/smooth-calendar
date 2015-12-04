@@ -152,7 +152,7 @@ jQuery(document).ready(function ($) {
 		var self = this;
 
 		$.ajax({
-			url: '/wp-json/wp/v2/calendar?&filter[posts_per_page]=100&filter[meta_key]=meta_calendar_month&filter[meta_value]=' + self.vars.month + '&filter[meta_key]=meta_calendar_year&filter[meta_value]=' + self.vars.year,
+			url: '/wp-json/wp/v2/calendar?&filter[posts_per_page]=100&filter[meta_key]=meta_calendar_month&filter[meta_value]=' + self.vars.month,
 			success: function (events) {
 				self.updateDom(events);
 			}
