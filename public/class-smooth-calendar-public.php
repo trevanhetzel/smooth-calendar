@@ -121,6 +121,22 @@ class Smooth_Calendar_Public {
 	}
 
 	/**
+	 * Registers single calendar post template
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 */
+	public function calendar_get_single_template($single_template) {
+		global $post;
+
+		if ($post->post_type == 'calendar') {
+			$single_template = dirname( __FILE__ ) . '/single-calendar.php';
+		}
+    
+    return $single_template;
+	} // calendar_get_single_template()
+
+	/**
 	 * Creates new shortcodes
 	 *
 	 * @since 	1.0.0

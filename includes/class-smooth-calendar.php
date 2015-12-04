@@ -184,6 +184,8 @@ class Smooth_Calendar {
 
 		$this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
 
+		$this->loader->add_filter( 'single_template', $plugin_public, 'calendar_get_single_template', 10, 2 );
+
 		/**
 		 * Expose extra meta values to API
 		 */
