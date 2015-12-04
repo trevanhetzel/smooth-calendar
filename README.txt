@@ -54,6 +54,22 @@ No. Currently, only one calendar is supported. You could technically display mul
 
 == Screenshots ==
 
+![Desktop view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/desktop-default.png "Desktop view")
+
+![Desktop hover view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/desktop.png "Desktop hover view")
+
+![Tablet view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/tablet.png "Tablet view")
+
+![Mobile view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/mobile-default.png "Mobile view")
+
+![Mobile hover view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/mobile.png "Mobile hover view")
+
+![Single page view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/single.png "Single page view")
+
+![Dashboard view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/dashboard.png "Dashboard view")
+
+![Dashboard edit view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/edit.png "Dashboard edit view")
+
 == Changelog ==
 
 = 1.0 =
