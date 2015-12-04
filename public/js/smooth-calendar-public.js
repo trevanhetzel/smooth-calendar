@@ -181,6 +181,7 @@ jQuery(document).ready(function ($) {
 				startTime = event.meta_calendar_start,
 				endTime = event.meta_calendar_end,
 				description = event.meta_calendar_description,
+				excerpt = description.substring(0, 100),
 				matchingItem = self.vars.cal.find('li[data-date="' + date + '"]');
 
 			var buildPopup = function () {
@@ -210,7 +211,7 @@ jQuery(document).ready(function ($) {
 				}
 
 				if (description) {
-					content += '<p><strong>Description: </strong>' + description + '</p>';
+					content += '<p><strong>Description: </strong>' + excerpt + '...</p>';
 				}
 
 				if (self.vars.single) {
