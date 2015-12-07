@@ -72,6 +72,9 @@ No. Currently, only one calendar is supported. You could technically display mul
 
 == Changelog ==
 
+= v1.1.5 =
+* Update version number in an attempt to get the changes shown on the WP plugin page
+
 = v1.1 =
 * Update plugin author and modify paths to screenshots
 
