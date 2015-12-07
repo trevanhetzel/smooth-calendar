@@ -15,8 +15,8 @@
  * @wordpress-plugin
  * Plugin Name:       Smooth Calendar
  * Plugin URI:        http://trevan.co/smooth-calendar
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Description:       A simple and flexible WordPress calendar plugin
+ * Version:           1.1
  * Author:            Trevan Hetzel
  * Author URI:        http://trevan.co
  * License:           GPL-2.0+
