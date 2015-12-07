@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: Trevan Hetzel
+Contributors: hetzelcreative
 Donate link: http://trevan.co
 Tags: calendar, events
 Requires at least: 4.3
@@ -54,23 +54,26 @@ No. Currently, only one calendar is supported. You could technically display mul
 
 == Screenshots ==
 
-![Desktop view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/desktop-default.png "Desktop view")
+1. ![Desktop view](assets/desktop-default.png "Desktop view")
 
-![Desktop hover view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/desktop.png "Desktop hover view")
+2. ![Desktop hover view](assets/desktop.png "Desktop hover view")
 
-![Tablet view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/tablet.png "Tablet view")
+3. ![Tablet view](assets/tablet.png "Tablet view")
 
-![Mobile view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/mobile-default.png "Mobile view")
+4. ![Mobile view](assets/mobile-default.png "Mobile view")
 
-![Mobile hover view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/mobile.png "Mobile hover view")
+5. ![Mobile hover view](assets/mobile.png "Mobile hover view")
 
-![Single page view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/single.png "Single page view")
+6. ![Single page view](assets/single.png "Single page view")
 
-![Dashboard view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/dashboard.png "Dashboard view")
+7. ![Dashboard view](assets/dashboard.png "Dashboard view")
 
-![Dashboard edit view](https://raw.githubusercontent.com/trevanhetzel/smooth-calendar/master/public/images/edit.png "Dashboard edit view")
+8. ![Dashboard edit view](assets/edit.png "Dashboard edit view")
 
 == Changelog ==
 
-= 1.0 =
+= v1.1 =
+* Update plugin author and modify paths to screenshots
+
+= v1.0 =
 * Initial release
