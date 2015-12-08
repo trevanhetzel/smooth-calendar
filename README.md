@@ -45,18 +45,18 @@ No. Currently, only one calendar is supported. You could technically display mul
 
 ### Screenshots
 
-![Desktop view](/assets/desktop-default.png?raw=true "Desktop view")
+![Desktop view](/assets/screenshot-1.png?raw=true "Desktop view")
 
-![Desktop hover view](/assets/desktop.png?raw=true "Desktop hover view")
+![Desktop hover view](/assets/screenshot-2.png?raw=true "Desktop hover view")
 
-![Tablet view](/assets/tablet.png?raw=true "Tablet view")
+![Tablet view](/assets/screenshot-3.png?raw=true "Tablet view")
 
-![Mobile view](/assets/mobile-default.png?raw=true "Mobile view")
+![Mobile view](/assets/screenshot-4.png?raw=true "Mobile view")
 
-![Mobile hover view](/assets/mobile.png?raw=true "Mobile hover view")
+![Mobile hover view](/assets/screenshot-5.png?raw=true "Mobile hover view")
 
-![Single page view](/assets/single.png?raw=true "Single page view")
+![Single page view](/assets/screenshot-6.png?raw=true "Single page view")
 
-![Dashboard view](/assets/dashboard.png?raw=true "Dashboard view")
+![Dashboard view](/assets/screenshot-7.png?raw=true "Dashboard view")
 
-![Dashboard edit view](/assets/edit.png?raw=true "Dashboard edit view")
+![Dashboard edit view](/assets/screenshot-8.png?raw=true "Dashboard edit view")

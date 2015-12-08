@@ -54,23 +54,26 @@ No. Currently, only one calendar is supported. You could technically display mul
 
 == Screenshots ==
 
-1. ![Desktop view](assets/desktop-default.png "Desktop view")
+1. Desktop view
 
-2. ![Desktop hover view](assets/desktop.png "Desktop hover view")
+2. Desktop hover view
 
-3. ![Tablet view](assets/tablet.png "Tablet view")
+3. Tablet view
 
-4. ![Mobile view](assets/mobile-default.png "Mobile view")
+4. Mobile view
 
-5. ![Mobile hover view](assets/mobile.png "Mobile hover view")
+5. Mobile hover view
 
-6. ![Single page view](assets/single.png "Single page view")
+6. Single page view
 
-7. ![Dashboard view](assets/dashboard.png "Dashboard view")
+7. Dashboard view
 
-8. ![Dashboard edit view](assets/edit.png "Dashboard edit view")
+8. Dashboard edit view
 
 == Changelog ==
+
+= v1.1.6 =
+* Minor change to version number to retag and show proper assets
 
 = v1.1.5 =
 * Update version number in an attempt to get the changes shown on the WP plugin page

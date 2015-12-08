@@ -16,7 +16,7 @@
  * Plugin Name:       Smooth Calendar
  * Plugin URI:        http://trevan.co/smooth-calendar
  * Description:       A simple and flexible WordPress calendar plugin
- * Version:           1.1.5
+ * Version:           1.1.6
  * Author:            Trevan Hetzel
  * Author URI:        http://trevan.co
  * License:           GPL-2.0+
