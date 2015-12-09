@@ -300,4 +300,14 @@ class Smooth_Calendar_Admin {
 		}
 	} // calendar_columns_content()
 
+	public function calendar_check_dependencies () {
+		if ( ! defined('REST_API_VERSION') ) {
+			function calendar_admin_notice () {
+				printf('<div class="error"><p>%s</p></div>', __('Activate the WP REST API plugin. It is required to use Smooth Calendar.'));
+			}
+
+			add_action('admin_notices', 'calendar_admin_notice');
+		}
+	} // calendar_check_dependencies()
+
 }
