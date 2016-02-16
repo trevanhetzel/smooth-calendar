@@ -32,6 +32,7 @@ There is an abundance of WordPress calendar plugins, but if you're looking for a
 * Easily extendable
 * Uses custom post types and metadata, which makes creating your own theme very straightforward
 * Allows the display of an event title, date, start/end time, location and description
+* Google Calendar integration
 
 == Installation ==
 
@@ -69,6 +70,9 @@ No. Currently, only one calendar is supported. You could technically display mul
 8. Dashboard edit view
 
 == Changelog ==
+
+= v1.2.1 =
+* Add option to add Google Calendar link on single event pages
 
 = v1.2.0 =
 * Major change that removes dependency on WP REST API

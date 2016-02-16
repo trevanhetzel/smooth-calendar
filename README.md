@@ -23,6 +23,7 @@ There is an abundance of WordPress calendar plugins, but if you're looking for a
 - Easily extendable
 - Uses custom post types and metadata, which makes creating your own theme very straightforward
 - Allows the display of an event title, date, start/end time, location and description
+- Google Calendar integration
 
 ### Installation
 
