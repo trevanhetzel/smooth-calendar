@@ -53,7 +53,7 @@
 				</tr>
 			</tbody>
 		</table>
-		
+
 		<?php submit_button(); ?>
 	</form>
 </div>

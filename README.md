@@ -5,7 +5,7 @@ Smooth Calendar
 
 Smooth Calendar is a straightfowrward solution to displaying events on a WordPress site. First and foremost, the calendar view allows users of your site to quickly see events for a given month. Multiple events can be displayed on a single day and there is an option to display a single page for each event, perfect for linking people to an event page from social media!
 
-The plugin is built around the latest version of the [WP REST API](https://wordpress.org/plugins/rest-api/) (must be installed on your site), which means a lot of the heavy lifting is done with JavaScript, providing for a fast and easy to use experience for users. The experience in the Dashboard is also very user friendly, as each event is a custom post type with easy to understand fields.
+The plugin uses JavaScript to fetch data, which provides for a fast and easy to use experience for users. The experience in the Dashboard is also very user friendly, as each event is a custom post type with easy to understand fields.
 
 While the plugin can certainly be installed and used right out of the box, there is much room for flexibility and extending the plugin. From styling it to fit your site's theme to adding even more functionality, this plugin was written in an extendable way to fit you as a site owner's or developer's needs.
 
@@ -21,7 +21,6 @@ There is an abundance of WordPress calendar plugins, but if you're looking for a
 - Ability to have single pages for each event (which makes it SEO friendly)
 - Customizable colors
 - Easily extendable
-- Uses WP REST API
 - Uses custom post types and metadata, which makes creating your own theme very straightforward
 - Allows the display of an event title, date, start/end time, location and description
 
@@ -29,9 +28,8 @@ There is an abundance of WordPress calendar plugins, but if you're looking for a
 
 1. Upload [`smooth-calendar`](https://github.com/trevanhetzel/smooth-calendar/archive/master.zip) to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Install version 2.0 or later of the [WP REST API](https://wordpress.org/plugins/rest-api/) plugin (Smooth Calendar depends upon the WP REST API)
-4. Place the calendar in a page using the shortcode `[smooth-calendar`] (optionally place it in a theme file with `<?php echo do_shortcode('[smooth-calendar]'); ?>`)
-5. Update the settings by viewing the Settings page under the 'Calendar' tab. If you'd like each event to have its own page, check the 'Enable single pages' checkbox.
+3. Place the calendar in a page using the shortcode `[smooth-calendar`] (optionally place it in a theme file with `<?php echo do_shortcode('[smooth-calendar]'); ?>`)
+4. Update the settings by viewing the Settings page under the 'Calendar' tab. If you'd like each event to have its own page, check the 'Enable single pages' checkbox.
 
 ### FAQ
 

@@ -166,8 +166,6 @@ class Smooth_Calendar {
 		$this->loader->add_action( 'manage_calendar_posts_columns', $plugin_admin, 'calendar_columns_head');
 		$this->loader->add_action( 'manage_calendar_posts_custom_column', $plugin_admin, 'calendar_columns_content', 10, 2 );
 
-		$this->loader->add_action( 'init', $plugin_admin, 'calendar_check_dependencies', 10, 2 );
-
 	}
 
 	/**
@@ -186,43 +184,13 @@ class Smooth_Calendar {
 
 		$this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
 
+		/**
+		 * Register Ajax endpoint action
+		 */
+		$this->loader->add_action( 'wp_ajax_return_events', $plugin_public, 'return_events' );
+		$this->loader->add_action( 'wp_ajax_nopriv_return_events', $plugin_public, 'return_events' );
+
 		$this->loader->add_filter( 'single_template', $plugin_public, 'calendar_get_single_template', 10, 2 );
-
-		/**
-		 * Expose extra meta values to API
-		 */
-		add_action( 'rest_api_init', 'calendar_register_meta' );
-
-		function calendar_register_meta() {
-			$meta_args = array(
-				'get_callback'    => 'calendar_get_field',
-				'update_callback' => null,
-				'schema'          => null,
-			);
-
-			register_api_field( 'calendar', 'meta_calendar_date', $meta_args);
-			register_api_field( 'calendar', 'meta_calendar_start', $meta_args);
-			register_api_field( 'calendar', 'meta_calendar_end', $meta_args);
-			register_api_field( 'calendar', 'meta_calendar_location', $meta_args);
-			register_api_field( 'calendar', 'meta_calendar_description', $meta_args);
-			register_api_field( 'calendar', 'meta_calendar_month', $meta_args);
-			register_api_field( 'calendar', 'meta_calendar_year', $meta_args);
-			register_api_field( 'calendar', 'meta_calendar_dateFormatted', $meta_args);
-		}
-
-		/**
-		 * Get the value of meta field
-		 */
-		function calendar_get_field( $object, $field_name, $request ) {
-			return get_post_meta( $object[ 'id' ], $field_name, true );
-		}
-
-		add_filter( 'rest_query_vars', 'flux_allow_meta_query' );
-		
-		function flux_allow_meta_query ($valid_vars) {
-			$valid_vars = array_merge( $valid_vars, array( 'meta_key', 'meta_value', 'meta_compare' ) );
-			return $valid_vars;
-		}
 
 	}
 

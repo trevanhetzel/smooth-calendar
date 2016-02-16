@@ -132,9 +132,66 @@ class Smooth_Calendar_Public {
 		if ($post->post_type == 'calendar') {
 			$single_template = dirname( __FILE__ ) . '/single-calendar.php';
 		}
-    
+
     return $single_template;
 	} // calendar_get_single_template()
+
+	/**
+	 * Return events
+	 * @since    1.2.0
+	 * @access 	public
+	 */
+	public function return_events() {
+		$meta_query_args = array(
+			array(
+				'relation' => 'AND',
+				array(
+					'key'     => 'meta_calendar_month',
+					'value'   => $_GET['month'],
+					'compare' => '='
+				),
+				array(
+					'key'     => 'meta_calendar_year',
+					'value'   => $_GET['year'],
+					'compare' => '='
+				)
+			)
+		);
+
+		$eventsQuery = new WP_Query( array(
+			'posts_per_page' => 100,
+			'post_type' => 'calendar',
+			'meta_query' => $meta_query_args,
+			'ignore_sticky_posts' => 1
+		));
+
+		$result = array();
+
+		if ($eventsQuery->have_posts()) {
+			while ($eventsQuery->have_posts()) {
+				$eventsQuery->the_post();
+				global $post;
+
+				$result[] = array(
+	        'title' => get_the_title(),
+	        'description' => get_post_meta($post->ID, 'meta_calendar_description', true),
+	        'date' => get_post_meta($post->ID, 'meta_calendar_date', true),
+	        'dateFormatted' => get_post_meta($post->ID, 'meta_calendar_dateFormatted', true),
+	        'location' => get_post_meta($post->ID, 'meta_calendar_location', true),
+	        'start' => get_post_meta($post->ID, 'meta_calendar_start', true),
+	        'end' => get_post_meta($post->ID, 'meta_calendar_end', true),
+	        'link' => get_the_permalink()
+	      );
+			}
+		}
+
+		if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+			echo json_encode($result);
+			die;
+		} else {
+			header('Location: '.$_SERVER['HTTP_REFERER']);
+		}
+	}
 
 	/**
 	 * Creates new shortcodes
@@ -149,7 +206,7 @@ class Smooth_Calendar_Public {
 
 	public function calendar_shortcode() {
 		$single = get_option('calendar_setting_single');
-		
+
 		if ($single) {
 			$markup = '<section class="smooth-cal" id="js-smooth-cal" data-single="true">';
 		} else {

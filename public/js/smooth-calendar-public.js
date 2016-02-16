@@ -58,7 +58,7 @@ jQuery(document).ready(function ($) {
 
 		// Leftover days in month
 		this.vars.leftOverDays = 6 - this.vars.lastMonthDay;
-		
+
 		// Current month
 		this.vars.month = formatMonth(this.vars.dateObj);
 
@@ -152,9 +152,17 @@ jQuery(document).ready(function ($) {
 		var self = this;
 
 		$.ajax({
-			url: '/wp-json/wp/v2/calendar?&filter[posts_per_page]=100&filter[meta_key]=meta_calendar_month&filter[meta_value]=' + self.vars.month,
-			success: function (events) {
-				self.updateDom(events);
+			url: '/wp-admin/admin-ajax.php',
+			processData: true,
+      data: $.param({
+        action: 'return_events',
+        month: self.vars.month,
+        year: self.vars.year
+      }),
+			success: function (data) {
+				var result = JSON.parse(data);
+
+				self.updateDom(result);
 			}
 		});
 	}
@@ -173,15 +181,16 @@ jQuery(document).ready(function ($) {
 		}
 
 		$.each(events, function (index, event) {
-			var title = event.title.rendered,
+			var title = event.title,
 				truncatedTitle = truncate(title),
-				date = event.meta_calendar_date,
-				dateFormatted = event.meta_calendar_dateFormatted,
-				location = event.meta_calendar_location,
-				startTime = event.meta_calendar_start,
-				endTime = event.meta_calendar_end,
-				description = event.meta_calendar_description,
+				date = event.date,
+				dateFormatted = event.dateFormatted,
+				location = event.location,
+				startTime = event.start,
+				endTime = event.end,
+				description = event.description,
 				excerpt = description.substring(0, 100),
+				link = event.link,
 				matchingItem = self.vars.cal.find('li[data-date="' + date + '"]');
 
 			var buildPopup = function () {
@@ -215,7 +224,7 @@ jQuery(document).ready(function ($) {
 				}
 
 				if (self.vars.single) {
-					content += '<p><a href="' + event.link + '" class="smooth-cal__btn">More information &raquo;</a></p>';
+					content += '<p><a href="' + link + '" class="smooth-cal__btn">More information &raquo;</a></p>';
 				}
 
 				content += '</div>';
@@ -231,7 +240,7 @@ jQuery(document).ready(function ($) {
 
 				matchingItem.find('.smooth-cal__inner').append(buildPopup());
 			}
-			
+
 		});
 	}
 
