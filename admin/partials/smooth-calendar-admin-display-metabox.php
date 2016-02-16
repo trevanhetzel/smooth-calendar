@@ -64,7 +64,7 @@ $description_value = get_post_meta( $post->ID, 'meta_calendar_description', true
 				<label for="calendar_description"><?php _e( 'Description', '' ); ?></label>
 			</th>
 			<td>
-				<textarea name="calendar_description" id="calendar_description" class="regular-textarea ltr" rows="4"><?php echo esc_attr( $description_value ); ?></textarea>
+				<?php wp_editor( $description_value, 'calendar_description' ); ?>
 			</td>
 		</tr>
 	</tbody>

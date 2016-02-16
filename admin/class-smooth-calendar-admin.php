@@ -220,7 +220,7 @@ class Smooth_Calendar_Admin {
 		$start_data = sanitize_text_field( $_POST['calendar_start'] );
 		$end_data = sanitize_text_field( $_POST['calendar_end'] );
 		$location_data = sanitize_text_field( $_POST['calendar_location'] );
-		$description_data = sanitize_text_field( $_POST['calendar_description'] );
+		$description_data =  $_POST['calendar_description'];
 
 		// Add month & year
 		$date = esc_attr( $date_data );
