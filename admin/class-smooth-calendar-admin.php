@@ -272,6 +272,7 @@ class Smooth_Calendar_Admin {
 		register_setting('calendar_group','calendar_setting_days_bg');
 		register_setting('calendar_group','calendar_setting_link_bg');
 		register_setting('calendar_group','calendar_setting_single');
+		register_setting('calendar_group','calendar_setting_gcal');
 	} // calendar_settings_init()
 
 	/**

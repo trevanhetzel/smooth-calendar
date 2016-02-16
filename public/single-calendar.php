@@ -19,6 +19,7 @@ if ($single) {
     $endTime = get_post_meta( $post->ID, 'meta_calendar_end', true );
     $location = get_post_meta( $post->ID, 'meta_calendar_location', true );
     $description = get_post_meta( $post->ID, 'meta_calendar_description', true );
+    $show_gcal = get_option('calendar_setting_gcal');
 
     if ($date) {
       echo '<p><strong>Date:</strong> ' . $date . '</p>';
@@ -40,6 +41,23 @@ if ($single) {
 
     if ($description) {
       echo $description;
+    }
+
+    if ($show_gcal && $date && $startTime) {
+      echo '<p><a class="smooth-cal__save" target="_blank" class="btn" href="https://www.google.com/calendar/render?action=TEMPLATE';
+      echo '&text=' . get_the_title();
+
+      if ($endTime) {
+        echo '&dates=' . date('Ymd\\THi00', strtotime($date . ' ' . $startTime)) . '/' . date('Ymd\\THi00', strtotime($date . ' ' . $endTime));
+      } else {
+        echo '&dates=' . date('Ymd\\THi00', strtotime($date . ' ' . $startTime)) . '/' . date('Ymd\\THi00', strtotime($date . ' ' . $startTime));
+      }
+
+      if ($location) {
+        echo '&location=' . $location;
+      }
+
+      echo '&sf=tru&output=xml">Save to Google Calendar</a></p>';
     }
 
     endwhile;

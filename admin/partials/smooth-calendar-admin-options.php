@@ -54,6 +54,22 @@
 			</tbody>
 		</table>
 
+		<h3 class="title">Google Calendar link</h3>
+
+		<p>Select this option if you want to display a hyperlink on single event pages that allows users to add the event to their Google Calendar.</p>
+
+		<table class="form-table">
+			<tbody>
+				<tr>
+					<th><label for="calendar_setting_header_bg">Enable Google Calendar link</label></th>
+					<?php
+					$gcalVal = get_option('calendar_setting_gcal');
+					?>
+					<td><input name="calendar_setting_gcal" id="calendar_setting_gcal" type="checkbox" <?php if ($gcalVal) { ?>checked<?php } ?>></td>
+				</tr>
+			</tbody>
+		</table>
+
 		<?php submit_button(); ?>
 	</form>
 </div>
