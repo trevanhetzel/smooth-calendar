@@ -42,6 +42,41 @@ The single event template can be overridden by adding a file in your theme calle
 
 No. Currently, only one calendar is supported. You could technically display multiple calendars by using categories or tags though.
 
+**How can I display upcoming events elsewhere on my site?**
+
+You can write a loop, querying the `calendar` post type and ordered by the `meta_calendar_data` meta value. Something like this:
+
+```
+<?php
+$events_args = array(
+    'post_type' => array('calendar'),
+    'showposts' => 3,
+    'meta_key' => 'meta_calendar_date',
+    'meta_value' => date('Y-m-d'),
+    'meta_compare' => '>=',
+    'orderby' => 'meta_value',
+    'order' => 'ASC'
+);
+
+$events_posts = get_posts($events_args);
+
+echo '<ul class="upcoming">';
+
+foreach ($events_posts as $post) {
+    setup_postdata( $post ); ?>
+
+    <li class="upcoming__event">
+        <div class="upcoming__date">
+            <?php echo date("j", strtotime($post->meta_calendar_date)); ?>
+            <span class="upcoming__month"><?php echo date("M", strtotime(($post->meta_calendar_date))); ?></span>
+        </div>
+
+        <a href="<?php the_permalink(); ?>" class="upcoming__title"><?php the_title(); ?></a>
+        <p class="upcoming__desc"><?php echo $post->meta_calendar_location; ?></p>
+    </li>
+<?php } ?>
+```
+
 ### Screenshots
 
 ![Desktop view](/assets/screenshot-1.png?raw=true "Desktop view")
